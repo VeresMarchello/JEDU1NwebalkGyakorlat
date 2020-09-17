@@ -6,6 +6,7 @@ public class Substract
 	{
 		// returns a-b
 		// fix
+		// optimizing
 		return a - b;
 	} 
 }
