@@ -7,6 +7,7 @@ public class Substract
 		// returns a-b
 		// fix
 		// optimizing
+		// new features
 		return a - b;
 	} 
 }
