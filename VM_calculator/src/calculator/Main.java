@@ -7,15 +7,4 @@ public class Main
 	{
 
 	}
-
-	private int Add(int a, int b)
-	{
-		//returns a + b
-		return a + b;
-	}
-
-	private int Substract(int a, int b)
-	{
-		return a - b;
-	}
 }
