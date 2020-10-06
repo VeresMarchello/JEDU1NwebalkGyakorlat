@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+  <title>Felhasználói Bemeneti Űrlap</title>
+</head>
+ 
+<body>
+<h2>Felhasználói Bemeneti Űrlap</h2>
+<form method="get" action="echo">
+  <fieldset>
+    <legend>Felhasználó adatai</legend>
+    Név: <input type="text" name="username" /><br /><br />
+    Jelszó: <input type="password" name="password" /><br /><br />
+    Nem: <input type="radio" name="gender" value="m" checked />Férfi
+    <input type="radio" name="gender" value="f" />Nő<br /><br />
+    Életkor: <select name = "age">
+      <option value="1">&lt; 1 éves</option>
+      <option value="99">1 - 99 éves</option>
+      <option value="100">&gt; 99 éves</option>
+    </select>
+  </fieldset>
+ 
+  <fieldset>
+    <legend>Nyelvek</legend>
+    <input type="checkbox" name="language" value="java" checked />Java
+    <input type="checkbox" name="language" value="c" />C/C++
+    <input type="checkbox" name="language" value="cs" />C#
+  </fieldset>
+ 
+  <fieldset>
+    <legend>Utasítások</legend>
+    <textarea rows="5" cols="30" name="instruction">Írd ide az utasításokat...</textarea>
+  </fieldset>
+ 
+  <input type="hidden" name="secret" value="888" />
+  <input type="submit" value="ELKÜLD" />
+  <input type="reset" value="TÖRÖL" />
+</form>
+</body>
+</html>
