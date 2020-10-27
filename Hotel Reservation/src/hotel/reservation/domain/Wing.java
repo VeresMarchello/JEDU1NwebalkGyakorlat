@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Wing
 {
+	//Private
 	String description;
 	Floor floor;
 	List<Room> rooms;
