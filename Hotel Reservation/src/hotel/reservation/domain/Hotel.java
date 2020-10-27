@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Hotel
 {
+	//Private
 	String name;
 	String address;
 	Integer stars;
