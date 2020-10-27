@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Floor
 {
+	//Private
 	Integer floorNumber;
 	Hotel hotel;
 	List<Wing> wings;
