@@ -4,7 +4,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class BookingPerson extends User
-{
+{	
+//Private
 	String name;
 	Integer accountNumber;
 	BigDecimal balance;
