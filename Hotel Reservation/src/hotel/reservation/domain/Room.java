@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 public class Room
 {
+	//Private
 	Integer number;
 	Number beds;
 	Boolean balcon;
