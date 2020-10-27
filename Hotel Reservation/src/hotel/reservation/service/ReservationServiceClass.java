@@ -47,7 +47,7 @@ public class ReservationServiceClass implements ReservationService
 		Room r4 = new Room(4, 2, false, BigDecimal.valueOf(500), null);
 		Wing w1 = new Wing("", null, rooms, WingType.NORTH);
 		Floor f1 = new Floor(1, null, wings);
-		Hotel h1 = new Hotel("Hilton", "0000,Kukutyin Ó utca 4", 4, floors);
+		Hotel h1 = new Hotel("Hilton", "0000,Kukutyin Ã“ utca 4", 4, floors);
 
 		f1.setHotel(h1);
 		w1.setFloor(f1);
@@ -82,13 +82,13 @@ public class ReservationServiceClass implements ReservationService
 	@Override
 	public void checkIn()
 	{
-		
+		//Implementation?
 	}
 
 	@Override
 	public void checkOut()
 	{
-		
+	//Implementation?	
 	}
 
 }
