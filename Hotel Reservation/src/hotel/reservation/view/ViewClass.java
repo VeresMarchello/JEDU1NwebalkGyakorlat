@@ -137,6 +137,7 @@ public class ViewClass implements View
 						else
 						{
 							//hard coded choose for hacky solution program should be work even if I choose another rooms or I changed the data
+							//this is letter l (variable), not a hardcoded number
 							return rooms.get(l);
 						}
 					}
@@ -213,10 +214,6 @@ public class ViewClass implements View
 	public void printCheckOut(BookingPerson bookingPerson, List<Reservation> reservations)
 	{
 		System.out.println("Check out. You are the 100th guest, you got 10% refund");
-		//Calculation should be in service
-		BigDecimal refund = reservations.get(0).getAmount().divide(new BigDecimal(10));
-		BigDecimal balance = bookingPerson.getBalance();
-		bookingPerson.setBalance(balance.add(refund));
 		printBalance(bookingPerson);
 	}
 

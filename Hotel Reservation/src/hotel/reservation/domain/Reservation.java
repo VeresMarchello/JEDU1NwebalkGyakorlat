@@ -5,15 +5,14 @@ import java.time.LocalDateTime;
 
 public class Reservation
 {
-	//Private
-	BigDecimal amount;
-	LocalDateTime from;
-	LocalDateTime to;
-	boolean active;
-	boolean processed;
-	Currency currency;
-	Room room;
-	BookingPerson bookingPerson;
+	private BigDecimal amount;
+	private LocalDateTime from;
+	private LocalDateTime to;
+	private boolean active;
+	private boolean processed;
+	private Currency currency;
+	private Room room;
+	private BookingPerson bookingPerson;
 	
 	
 	public Reservation() 

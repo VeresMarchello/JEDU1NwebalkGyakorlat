@@ -4,10 +4,9 @@ import java.util.List;
 
 public class Floor
 {
-	//Private
-	Integer floorNumber;
-	Hotel hotel;
-	List<Wing> wings;
+	private Integer floorNumber;
+	private Hotel hotel;
+	private List<Wing> wings;
 	
 	public Floor() 
 	{

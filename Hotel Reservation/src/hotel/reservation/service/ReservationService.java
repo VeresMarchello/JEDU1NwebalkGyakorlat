@@ -18,7 +18,7 @@ public interface ReservationService
 
 	public List<Reservation> findAllReservations();
 
-	public void checkIn(); 
+	public void checkIn(List<Reservation> reservations); 
 
 	public void checkOut(); 
 }

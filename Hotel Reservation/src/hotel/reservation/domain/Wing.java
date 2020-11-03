@@ -4,11 +4,10 @@ import java.util.List;
 
 public class Wing
 {
-	//Private
-	String description;
-	Floor floor;
-	List<Room> rooms;
-	WingType wingType;
+	private String description;
+	private Floor floor;
+	private List<Room> rooms;
+	private WingType wingType;
 	
 
 	public Wing()

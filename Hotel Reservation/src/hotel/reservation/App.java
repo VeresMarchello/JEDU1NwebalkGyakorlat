@@ -9,9 +9,7 @@ import hotel.reservation.domain.Currency;
 import hotel.reservation.domain.Hotel;
 import hotel.reservation.domain.Reservation;
 import hotel.reservation.domain.Room;
-import hotel.reservation.service.ReservationService;
 import hotel.reservation.service.ReservationServiceClass;
-import hotel.reservation.view.View;
 import hotel.reservation.view.ViewClass;
 
 public class App
@@ -82,11 +80,18 @@ public class App
 	public static void checkIn()
 	{
 		List<Reservation> reservations = reservationClass.findAllReservations();
+		
+		reservationClass.checkIn(reservations);
 		viewClass.printCheckIn(reservations);
 	}
 
 	public static void checkOut()
 	{
-		viewClass.printCheckOut(reservationClass.findBookingPerson(), reservationClass.findAllReservations());
+		reservationClass.checkOut();
+		
+		List<Reservation> reservations = reservationClass.findAllReservations();
+		BookingPerson bookingPerson = reservationClass.findBookingPerson();
+		
+		viewClass.printCheckOut(bookingPerson, reservations);
 	}
 }

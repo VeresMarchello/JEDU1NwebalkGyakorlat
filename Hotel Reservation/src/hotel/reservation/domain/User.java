@@ -2,9 +2,8 @@ package hotel.reservation.domain;
 
 public class User
 {
-	//Private
-	String email;
-	String password;
+	private String email;
+	private String password;
 
 	
 	public User()

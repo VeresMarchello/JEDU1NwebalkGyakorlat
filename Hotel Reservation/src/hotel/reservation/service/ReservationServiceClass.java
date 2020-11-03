@@ -1,17 +1,14 @@
 package hotel.reservation.service;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import hotel.reservation.domain.BookingPerson;
-import hotel.reservation.domain.Currency;
 import hotel.reservation.domain.Floor;
 import hotel.reservation.domain.Hotel;
 import hotel.reservation.domain.Reservation;
 import hotel.reservation.domain.Room;
-import hotel.reservation.domain.User;
 import hotel.reservation.domain.Wing;
 import hotel.reservation.domain.WingType;
 
@@ -47,7 +44,7 @@ public class ReservationServiceClass implements ReservationService
 		Room r4 = new Room(4, 2, false, BigDecimal.valueOf(500), null);
 		Wing w1 = new Wing("", null, rooms, WingType.NORTH);
 		Floor f1 = new Floor(1, null, wings);
-		Hotel h1 = new Hotel("Hilton", "0000,Kukutyin Ó utca 4", 4, floors);
+		Hotel h1 = new Hotel("Hilton", "0000,Kukutyin O utca 4", 4, floors);
 
 		f1.setHotel(h1);
 		w1.setFloor(f1);
@@ -80,15 +77,21 @@ public class ReservationServiceClass implements ReservationService
 	}
 
 	@Override
-	public void checkIn()
+	public void checkIn(List<Reservation> reservations)
 	{
-		//Implementation?
+		for (Reservation reservation : reservations)
+		{
+			reservation.setActive(true);
+		}
 	}
 
 	@Override
 	public void checkOut()
 	{
-	//Implementation?	
+		BigDecimal refund = reservations.get(0).getAmount().divide(new BigDecimal(10));
+		BigDecimal balance = bookingPerson.getBalance();
+		
+		bookingPerson.setBalance(balance.add(refund));
 	}
 
 }

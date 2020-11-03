@@ -4,11 +4,10 @@ import java.util.List;
 
 public class Hotel
 {
-	//Private
-	String name;
-	String address;
-	Integer stars;
-	List<Floor> floors;
+	private String name;
+	private String address;
+	private Integer stars;
+	private List<Floor> floors;
 
 	
 	public Hotel() 

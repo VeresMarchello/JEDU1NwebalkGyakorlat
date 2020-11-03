@@ -5,13 +5,12 @@ import java.time.LocalDate;
 
 public class BookingPerson extends User
 {	
-//Private
-	String name;
-	Integer accountNumber;
-	BigDecimal balance;
-	LocalDate birth;
-	Currency currency;
-	User user;
+	private String name;
+	private Integer accountNumber;
+	private BigDecimal balance;
+	private LocalDate birth;
+	private Currency currency;
+	private User user;
 	
 	
 	public BookingPerson() 
@@ -28,7 +27,7 @@ public class BookingPerson extends User
 		this.balance = balance;
 		this.birth = birth;
 		this.currency = currency;
-		this.user = user;
+		this.setUser(user);
 	}
 	
 	
@@ -72,8 +71,14 @@ public class BookingPerson extends User
 	{
 		this.currency = currency;
 	}
-	
-	
+	public User getUser()
+	{
+		return user;
+	}
+	public void setUser(User user)
+	{
+		this.user = user;
+	}
 }
 
 

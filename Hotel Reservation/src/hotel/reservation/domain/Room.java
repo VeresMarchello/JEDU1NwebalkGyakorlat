@@ -4,12 +4,11 @@ import java.math.BigDecimal;
 
 public class Room
 {
-	//Private
-	Integer number;
-	Number beds;
-	Boolean balcon;
-	BigDecimal price;
-	Wing wing;
+	private Integer number;
+	private Number beds;
+	private Boolean balcon;
+	private BigDecimal price;
+	private Wing wing;
 	
 	
 	public Room()
