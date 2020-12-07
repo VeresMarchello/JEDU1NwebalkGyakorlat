@@ -82,25 +82,13 @@ public class WeldPointController
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "/modifyweldpoint", method = RequestMethod.POST)
-	public ModelAndView modifyWeldPoint(
-			@ModelAttribute("modifiedweldpoint") WeldPoint modifiedWeldPoint,
-			@ModelAttribute("selectedweldpoint") WeldPoint selectedWeldPoint)		
-	{
-		ModelAndView modelAndView = new ModelAndView();
-		
-		modelAndView.setViewName("weldpoints/selectedweldpoint");
-		return modelAndView;
-	}
-	
 	@RequestMapping(value = "/weldpoints", method = RequestMethod.POST)
 	public ModelAndView selectedWeldPointById(@RequestParam("id") Long id)
 	{
 		ModelAndView modelAndView = new ModelAndView();
 		Optional<WeldPoint> selectedWeldPoint = weldPointService.findById(id);
 		
-		modelAndView.addObject("selectedweldpoint", selectedWeldPoint.get());
-		modelAndView.addObject("modifiedweldpoint", selectedWeldPoint.get());
+		modelAndView.addObject("weldpoint", selectedWeldPoint.get());
 		modelAndView.setViewName("weldpoints/selectedweldpoint");
 		return modelAndView;
 	}
