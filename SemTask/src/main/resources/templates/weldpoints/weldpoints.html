@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>WeldPoints</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="collapse navbar-collapse justify-content-start">
+			<div class="navbar-nav">
+				<a th:href="@{/home}" class="nav-item nav-link">Home</a> 
+				<a th:href="@{/weldpoints}" class="nav-item nav-link active">WeldPoints</a>
+				<a th:href="@{/addweldpoint}" class="nav-item nav-link">Add WeldPoint</a>
+				<a th:href="@{/deleteweldpoint}" class="nav-item nav-link">Delete WeldPoint</a>
+
+			</div>
+			<div class="collapse navbar-collapse justify-content-end">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a th:href="@{/logout}"
+						class="nav-item nav-link">Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<br/>
+	<div class="table-responsive text-center container">
+	<form th:action="@{/weldpoints}" method="POST">
+		<table class="table table-striped table-bordered">
+			<caption>List of WeldPoints</caption>
+			<thead>
+				<tr>
+					<th scope="col">Robot Name</th>
+					<th scope="col">Schedule</th>
+					<th scope="col">Error Code</th>
+					<th scope="col">TL</th>
+					<th scope="col">BL</th>
+					<th scope="col">WL</th>
+					<th scope="col"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${weldpoints.empty}">
+					<td colspan="7">No WeldPoints Available</td>
+				</tr>
+				<tr th:each="weldpoint : ${weldpoints}">
+					<td><span th:text="${weldpoint.robotName}"></span></td>
+					<td><span th:text="${weldpoint.schedule}"></span></td>
+					<td><span th:text="${weldpoint.errorCode}"></span></td>
+					<td><span th:text="${weldpoint.tl}"></span></td>
+					<td><span th:text="${weldpoint.bl}"></span></td>
+					<td><span th:text="${weldpoint.wl}"></span></td>
+					<td><input class="form-check-input" type="radio" th:name="id" th:value="${weldpoint.id}"/></td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<button class="btn btn-block btn-success" type="Submit" th:text="Select"></button>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>WeldPoints</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="collapse navbar-collapse justify-content-start">
+			<div class="navbar-nav">
+				<a th:href="@{/home}" class="nav-item nav-link">Home</a> 
+				<a th:href="@{/weldpoints}" class="nav-item nav-link">WeldPoints</a>
+				<a th:href="@{/addweldpoint}" class="nav-item nav-link">Add WeldPoint</a>
+				<a th:href="@{/deleteweldpoint}" class="nav-item nav-link">Delete WeldPoint</a>
+				<a class="nav-item nav-link active">Selected WeldPoint</a>
+
+			</div>
+			<div class="collapse navbar-collapse justify-content-end">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a th:href="@{/logout}"
+						class="nav-item nav-link">Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<br/>
+	<div class="table-responsive container">
+		<table class="table text-center table-striped table-bordered">
+			<caption>Selected WeldPoint</caption>
+			<thead>
+				<tr>
+					<th scope="col">Robot Name</th>
+					<th scope="col">Schedule</th>
+					<th scope="col">Error Code</th>
+					<th scope="col">TL</th>
+					<th scope="col">BL</th>
+					<th scope="col">WL</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><span th:text="${selectedweldpoint.robotName}"></span></td>
+					<td><span th:text="${selectedweldpoint.schedule}"></span></td>
+					<td><span th:text="${selectedweldpoint.errorCode}"></span></td>
+					<td><span th:text="${selectedweldpoint.tl}"></span></td>
+					<td><span th:text="${selectedweldpoint.bl}"></span></td>
+					<td><span th:text="${selectedweldpoint.wl}"></span></td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<form th:action="@{/modifyweldpoint}" method="POST">
+		<div class="form-group">
+				<label>Robot Name</label> 
+				<input th:value="${modifiedweldpoint.robotName}" th:field="${modifiedweldpoint.robotName}" required="required" type="text" class="form-control" placeholder="Enter Robot Name">
+			</div>
+			<div class="form-group">
+				<label>Schedule</label> 
+				<input th:value="${modifiedweldpoint.schedule}" th:field="${modifiedweldpoint.schedule}" required="required" type="number" min="1" class="form-control" placeholder="Enter Schedule">
+			</div>
+			<div class="form-group">
+				<label>Error Code</label> 
+				<input th:value="${modifiedweldpoint.errorCode}" th:field="${modifiedweldpoint.errorCode}" required="required" type="number" min="0" max="6" class="form-control" placeholder="Enter Error Code">
+			</div>
+		<div class="form-row">
+				<div class="col">
+					<label>TL</label> 
+					<input th:value="${modifiedweldpoint.tl}" th:field="${modifiedweldpoint.tl}" required="required" type="number" step="0.1" class="form-control" placeholder="Enter X">
+				</div>
+				<div class="col">
+					<label>BL</label> 
+					<input th:value="${modifiedweldpoint.bl}" th:field="${modifiedweldpoint.bl}" required="required" type="number" step="0.1" class="form-control" placeholder="Enter Y">
+				</div>
+				<div class="col">
+					<label>WL</label> 
+					<input th:value="${modifiedweldpoint.tl}" th:field="${modifiedweldpoint.tl}" required="required" type="number" step="0.1" class="form-control" placeholder="Enter Z">
+				</div>				
+			</div>
+			<br/>
+			<button class="btn btn-block btn-success" type="Submit" th:text="Modify"></button>
+			<br/>
+		</form>
+	</div>
+</body>
+</html>
