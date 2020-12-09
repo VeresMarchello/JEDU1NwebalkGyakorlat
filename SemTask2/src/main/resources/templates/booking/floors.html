@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Floors</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="collapse navbar-collapse justify-content-start">
+			<div class="navbar-nav">
+				<a th:href="@{/home}" class="nav-item nav-link">Home</a> 
+				<a th:href="@{/hotels}" class="nav-item nav-link">Hotels</a>
+				<a class="nav-item nav-link active">Floors</a>
+			</div>
+			<div class="collapse navbar-collapse justify-content-end">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a th:href="@{/logout}"
+						class="nav-item nav-link">Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<br/>
+	<div class="table-responsive text-center container">
+	<form th:action="@{/floors}" method="POST" th:object="${hotel}">
+		<table class="table table-bordered">
+			<caption>Floors of Hotel <span th:text="${hotel.name}"></span></caption>
+			<thead>
+				<tr>
+					<th scope="col">Floor Number</th>
+					<th scope="col">Wings</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${floors.empty}">
+					<td colspan="2">No Floors Available</td>
+				</tr>
+				<tr th:each="floor : ${floors}" th:object="${floor}" th:if="${floor.hotel == hotel}">
+					<td class="align-middle"><span th:text="${floor.floorNumber}"></span></td>
+					<td>
+						<table class="table">
+							<tr th:each="wing : ${wings}" th:object="${wing}" th:if="${wing.floor == floor}">
+								<td class="align-middle"><span th:text="${wing.wingType}"></span></td>
+								<td class="align-middle"><span th:text="${wing.description}"></span></td>
+								<td class="align-middle"><button class="btn btn-block btn-success" th:name="id" th:value="${wing.id}" type="Submit" th:text="Book"></button></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<br/>
+		<a class="btn btn-block btn-danger" th:href="@{/hotels}">Cancel</a>
+		<br/>
+		</form>
+	</div>
+</body>
+</html>

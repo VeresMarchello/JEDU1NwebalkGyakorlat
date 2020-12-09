@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:object="${person}">
+		<div class="collapse navbar-collapse justify-content-start">
+			<div class="navbar-nav">
+				<a th:href="@{/home}" class="nav-item nav-link active">Home</a> 
+				<a th:href="@{/hotels}" class="nav-item nav-link">Hotels</a>
+			</div>
+			<div class="navbar-nav collapse navbar-collapse justify-content-end">
+				<a class="nav-item nav-link active"
+					th:text="'Welcome, ' + *{firstName} + ' ' + *{lastName} + '!'"></a>
+			</div>
+			<div class="collapse navbar-collapse justify-content-end">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a th:href="@{/logout}"
+						class="nav-item nav-link">Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<br/>
+	<div class="table-responsive container" th:object="${person}">
+		<form th:action="@{/modifyuser}" method="POST">
+			<input th:field="*{id}" type="hidden" class="form-control">
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">First Name</label>
+				<div class="col-sm-10">
+					<input th:field="*{firstName}" required="required" type="text" class="form-control">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">Last Name</label> 
+				<div class="col-sm-10">
+					<input th:field="*{lastName}" required="required" type="text" class="form-control">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">Date of Birth</label>
+				<div class="col-sm-10">
+					<input th:field="*{birth}" type="date" class="form-control" readonly>
+				</div> 
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">Balance</label> 
+				<div class="col-sm-10">
+					<input th:field="*{balance}" type="number" class="form-control" readonly>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">Currency</label>
+				<div class="col-sm-10">
+					<input th:field="*{currency}" type="text" class="form-control" readonly>
+				</div> 
+			</div>
+			<br/>
+			<button class="btn btn-block btn-success" type="Submit" th:text="Modify"></button>
+			<br/>
+		</form>	
+	</div>
+	<div class="table-responsive container" th:if="${!reservations.empty}" th:object="${reservations}">
+		<table class="table table-striped text-center table-bordered">
+			<caption>Reservations</caption>
+			<thead>
+				<tr>
+					<th scope="col">Hotel Name</th>
+					<th scope="col">Floor Number</th>
+					<th scope="col">Wing</th>
+					<th scope="col">Room Number</th>
+					<th scope="col">Beds</th>
+					<th scope="col">Balcony</th>
+					<th scope="col">From</th>
+					<th scope="col">To</th>
+					<th scope="col">Amount</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="reservation : ${reservations}">
+					<td><span th:text="${reservation.room.wing.floor.hotel.name}"></span></td>
+					<td><span th:text="${reservation.room.wing.floor.floorNumber}"></span></td>
+					<td><span th:text="${reservation.room.wing.wingType}"></span></td>
+					<td><span th:text="${reservation.room.number}"></span></td>
+					<td><span th:text="${reservation.room.beds}"></span></td>
+					<td><span th:text="${reservation.room.balcon} ? 'Yes' : 'No'"></span></td>
+					<td><span th:text="${#temporals.format(reservation.fromDateTime, 'yyyy-MM-dd HH:mm')}"></span></td>
+					<td><span th:text="${#temporals.format(reservation.toDateTime, 'yyyy-MM-dd HH:mm')}"></span></td>
+					<td><span th:text="${reservation.amount} + ' ' + ${reservation.currency}"></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
